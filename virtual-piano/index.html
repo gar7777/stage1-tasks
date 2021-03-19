@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="assets/piano.ico" rel="shortcut icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link
@@ -22,27 +22,29 @@
   </header>
   <main class="main">
     <div class="btn-container">
-      <button class="btn btn-notes btn-active">Notes</button>
-      <button class="btn btn-letters">Letters</button>
+      <button class="btn btn-letters" data-toggle="letter">Letters</button>
+      <button class="btn btn-notes btn-active" data-toggle="note">English notes</button>
+      <button class="btn btn-rus" data-toggle="rus">Русские ноты</button>
+      <button class="btn btn-none" data-toggle="nonebut">None</button>
     </div>
     <div class="piano">
-      <div class="piano-key" data-letter="D" data-note="c"></div>
-      <div class="piano-key" data-letter="F" data-note="d"></div>
-      <div class="piano-key" data-letter="G" data-note="e"></div>
-      <div class="piano-key" data-letter="H" data-note="f"></div>
-      <div class="piano-key" data-letter="J" data-note="g"></div>
-      <div class="piano-key" data-letter="K" data-note="a"></div>
-      <div class="piano-key" data-letter="L" data-note="b"></div>
+      <div class="piano-key note" data-letter="A" data-note="c" data-rus="до"></div>
+      <div class="piano-key note" data-letter="S" data-note="d" data-rus="ре"></div>
+      <div class="piano-key note" data-letter="D" data-note="e" data-rus="ми"></div>
+      <div class="piano-key note" data-letter="F" data-note="f" data-rus="фа"></div>
+      <div class="piano-key note" data-letter="G" data-note="g" data-rus="соль"></div>
+      <div class="piano-key note" data-letter="H" data-note="a" data-rus="ля"></div>
+      <div class="piano-key note" data-letter="J" data-note="b" data-rus="си"></div>
       <div class="keys-sharp">
-        <div class="piano-key sharp" data-letter="R" data-note="c♯"></div>
-        <div class="piano-key sharp" data-letter="T" data-note="d♯"></div>
-        <div class="piano-key sharp none"></div>
-        <div class="piano-key sharp" data-letter="U" data-note="f♯"></div>
-        <div class="piano-key sharp" data-letter="I" data-note="g♯"></div>
-        <div class="piano-key sharp" data-letter="O" data-note="a♯"></div>
+        <div class="piano-key note sharp" data-letter="W" data-note="c♯" data-rus="до♯"></div>
+        <div class="piano-key note sharp" data-letter="E" data-note="d♯" data-rus="ре♯"></div>
+        <div class="piano-key note sharp none"></div>
+        <div class="piano-key note sharp" data-letter="T" data-note="f♯" data-rus="фа♯"></div>
+        <div class="piano-key note sharp" data-letter="Y" data-note="g♯" data-rus="соль♯"></div>
+        <div class="piano-key note sharp" data-letter="U" data-note="a♯" data-rus="ля♯"></div>
       </div>
     </div>
-    <button class="fullscreen openfullscreen"></button>
+    <button class="fullscreen openfullscreen closefullscreen"></button>
   </main>
   <footer class="footer">
     <div class="footer-container">
@@ -52,6 +54,20 @@
       </a>
     </div>
   </footer>
+  <audio data-button="KeyA" src='assets/audio/c.mp3'></audio>
+  <audio data-button="KeyW" src='assets/audio/c♯.mp3'></audio>
+  <audio data-button="KeyS" src='assets/audio/d.mp3'></audio>
+  <audio data-button="KeyE" src='assets/audio/d♯.mp3'></audio>
+  <audio data-button="KeyD" src='assets/audio/e.mp3'></audio>
+  <audio data-button="KeyF" src='assets/audio/f.mp3'></audio>
+  <audio data-button="KeyT" src='assets/audio/f♯.mp3'></audio>
+  <audio data-button="KeyG" src='assets/audio/g.mp3'></audio>
+  <audio data-button="KeyY" src='assets/audio/g♯.mp3'></audio>
+  <audio data-button="KeyH" src='assets/audio/a.mp3'></audio>
+  <audio data-button="KeyU" src='assets/audio/a♯.mp3'></audio>
+  <audio data-button="KeyJ" src='assets/audio/b.mp3'></audio>
+
+
   <script src="script.js"></script>
 </body>
 

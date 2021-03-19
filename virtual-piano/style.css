@@ -3,6 +3,7 @@
 	margin: 0;
 	box-sizing: border-box;
 	user-select: none;
+	font-style: 10px;
 }
 a:focus {
 	outline: 0;
@@ -12,7 +13,6 @@ html {
 }
 body {
 	min-height: 100vh;
-	background-color: #313940;
 	font-family: "Open Sans", Arial, Helvetica, sans-serif;
 	background: #313940;
 	overflow-x: hidden;
@@ -43,7 +43,7 @@ body {
 .btn-container {
 	display: flex;
 	justify-content: space-between;
-	width: 306px;
+	width: 60%;
 	height: 40px;
 	margin: 0 auto;
 	margin-bottom: 80px;
@@ -110,7 +110,7 @@ body {
 .piano-key.sharp {
 	width: 54px;
 	height: 170px;
-	background-color: #313940;
+	background-color: rgb(78, 7, 20);
 	border: 0;
 	border-radius: 0px 0px 9px 9px;
 	top: 0;
@@ -121,32 +121,51 @@ body {
 .piano-key.piano-key-active,
 .piano-key.sharp.piano-key-active {
 	transform: scale(0.96);
+	background-color: yellow;
 }
 .piano-key.none {
 	background-color: transparent;
 	border: 0;
 	border-radius: 0;
 	pointer-events: none;
-}
-.piano-key::before,
+} 
+
+/* .piano-key::before, */
 .piano-key::after {
-	content: attr(data-note);
 	position: absolute;
-	width: 40px;
+	width: 100%;
 	height: 40px;
 	font-size: 26px;
 	line-height: 40px;
 	text-align: center;
 	color: #a2abb3;
-	bottom: -45px;
-	left: 20px;
+	bottom: 15px;
+	left: 50%;
+	transform: translateX(-50%);
 	transition: 0.3s;
 }
-.piano-key::after {
+/* .piano-key::after {
 	display: none;
 	content: attr(data-letter);
+} */
+.piano-key.note::after {
+	content: attr(data-note);
 }
-.piano-key:hover::before,
+
+.piano-key.letter::after {
+	content: attr(data-letter);
+}
+
+.piano-key.rus::after {
+	content: attr(data-rus);
+	font-size: 16px;
+}
+
+.piano-key.nonebut::after {
+	content: none;
+}
+
+/* .piano-key:hover::before, */
 .piano-key:hover::after {
 	color: #d7dfe6;
 }
@@ -155,20 +174,22 @@ body {
 	border-top: 0;
 }
 
-.piano-key.sharp::before,
+/* .piano-key.sharp::before, */
 .piano-key.sharp::after {
-	bottom: 175px;
-	left: 7px;
+	top: 15px;
+	left: 50%;
+	transform: translateX(-50%);
 }
-.piano-key.letter::before {
+/* .piano-key.letter::before {
 	display: none;
-}
+} */
+
 .piano-key.letter::after {
 	display: block;
 }
-.piano-key-letter::before {
+/* .piano-key-letter::before {
 	content: attr(data-letter);
-}
+} */
 
 .piano-key-remove-mouse:active::before {
 	color: #a2abb3;
