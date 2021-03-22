@@ -21,7 +21,9 @@ function closeFullScreen(){
 // end of fullscreen
 
 // audio and active key
+
 const piano = document.querySelector('.piano');
+const allKeys = document.querySelectorAll('.piano-key');
 piano.addEventListener('mousedown', playMouse);
 piano.addEventListener('mouseup', removeActive);
 piano.addEventListener('mouseout', removeActive);
@@ -29,18 +31,37 @@ piano.addEventListener('mouseout', removeActive);
 window.addEventListener('keydown', playSound);
 window.addEventListener('keyup', removeActiveButton);
 
-
-function removeActive(event) {
-    event.target.classList.remove('piano-key-active');
+const startSound = (event) => {
+    const sound = document.querySelector(`audio[data-button='Key${event.target.dataset.letter}']`);
+    sound.currentTime = 0;
+    sound.play();
+    event.target.classList.add('piano-key-active');
 }
 
-function removeActiveButton(event) {
-    const eventCode = event.key; 
-    const letterUP = eventCode.toUpperCase();
-    const button = document.querySelector(`.piano-key[data-letter='${letterUP}']`);
-    button.classList.remove('piano-key-active')
+const stopSound = (event) => {
+    event.target.classList.remove('piano-key-active')
 }
 
+const startOver = (event) => {
+    if(event.target.classList.contains('piano-key')){
+        event.target.classList.add('piano-key-active');
+        allKeys.forEach((elem) => {
+            elem.addEventListener('mouseover', startSound);
+            elem.addEventListener('mouseout', stopSound);
+            });
+    }
+}
+
+const stopOver = (event) => {
+    event.target.classList.remove('piano-key-active')
+    allKeys.forEach((elem) => {
+        elem.removeEventListener('mouseover', startSound);
+        elem.removeEventListener('mouseout', stopSound);
+    });
+};
+
+piano.addEventListener('mousedown', startOver);
+piano.addEventListener('mouseup', stopOver);
 
 function playMouse(event) {
     const sound = document.querySelector(`audio[data-button='Key${event.target.dataset.letter}']`);
@@ -49,15 +70,31 @@ function playMouse(event) {
     event.target.classList.add('piano-key-active');
 }
 
+
+function removeActive(event) {
+    event.target.classList.remove('piano-key-active');
+}
+
+function removeActiveButton(event) {
+    const eventCode = event.code.slice(-1);
+    const button = document.querySelector(`.piano-key[data-letter='${eventCode}']`);
+    if (button != null){
+        button.classList.remove('piano-key-active')
+    }
+}
+
 function playSound(event){
     const sound = document.querySelector(`audio[data-button='${event.code}']`);
-    const eventCode = event.key; 
-    const letterUP = eventCode.toUpperCase();
-    const button = document.querySelector(`.piano-key[data-letter='${letterUP}']`);
-    button.classList.add('piano-key-active')
-    if (sound != undefined){
-    sound.currentTime = 0;
-    sound.play();
+    const eventCode = event.code.slice(-1);
+    const button = document.querySelector(`.piano-key[data-letter='${eventCode}']`);
+    if (event.repeat == false) {   
+        if (button != null){
+            button.classList.add('piano-key-active')
+        }
+        if (sound != undefined){
+            sound.currentTime = 0;
+            sound.play();
+        }
     }
     
    }
